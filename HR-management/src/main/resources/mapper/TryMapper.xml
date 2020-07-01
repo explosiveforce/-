@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ndgwww.HR.management.mapper.TryMapper">
+  <resultMap id="BaseResultMap" type="com.ndgwww.HR.management.pojo.Try">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="startTime" jdbcType="DATE" property="starttime" />
+    <result column="endTime" jdbcType="DATE" property="endtime" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="dealDate" jdbcType="DATE" property="dealdate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+</resultMap>
+
+<resultMap id="queryForListMap" type="com.ndgwww.HR.management.pojo.Try">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="startTime" jdbcType="DATE" property="starttime" />
+    <result column="endTime" jdbcType="DATE" property="endtime" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="dealDate" jdbcType="DATE" property="dealdate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <association property="employee" javaType="com.ndgwww.HR.management.pojo.Employee">
+            <id column="id" jdbcType="VARCHAR" property="id" />
+            <result column="name" jdbcType="VARCHAR" property="name" />
+            <result column="sex" jdbcType="INTEGER" property="sex" />
+            <result column="birth" jdbcType="DATE" property="birth" />
+            <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+            <result column="departmentId" jdbcType="VARCHAR" property="departmentid" />
+            <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+            <result column="stationId" jdbcType="VARCHAR" property="stationid" />
+            <result column="stationName" jdbcType="VARCHAR" property="stationname" />
+            <result column="employDate" jdbcType="DATE" property="employdate" />
+            <result column="workDate" jdbcType="DATE" property="workdate" />
+            <result column="form" jdbcType="INTEGER" property="form" />
+            <result column="source" jdbcType="VARCHAR" property="source" />
+            <result column="politics" jdbcType="VARCHAR" property="politics" />
+            <result column="folk" jdbcType="VARCHAR" property="folk" />
+            <result column="nation" jdbcType="VARCHAR" property="nation" />
+            <result column="phone" jdbcType="VARCHAR" property="phone" />
+            <result column="email" jdbcType="VARCHAR" property="email" />
+            <result column="height" jdbcType="VARCHAR" property="height" />
+            <result column="blood" jdbcType="VARCHAR" property="blood" />
+            <result column="status" jdbcType="VARCHAR" property="status" />
+            <result column="homeplace" jdbcType="VARCHAR" property="homeplace" />
+            <result column="seat" jdbcType="VARCHAR" property="seat" />
+            <result column="eduBack" jdbcType="VARCHAR" property="eduback" />
+            <result column="eduDegree" jdbcType="VARCHAR" property="edudegree" />
+            <result column="graSchool" jdbcType="VARCHAR" property="graschool" />
+            <result column="speciality" jdbcType="VARCHAR" property="speciality" />
+            <result column="graDate" jdbcType="DATE" property="gradate" />
+            <result column="tag" jdbcType="INTEGER" property="tag" />
+    </association>
+</resultMap>
+    <select id="queryForList" parameterType="java.lang.String" resultMap="queryForListMap">
+        SELECT
+          a.name,a.departmentName,a.stationName,b.remark,b.startTime,b.endTime
+        From employee a
+        Join try b
+        ON
+          a.id = b.id
+        where
+          b.result = #{result,jdbcType=VARCHAR}
+    </select>
+
+  <sql id="Base_Column_List">
+    id, startTime, endTime, comment, result, dealDate, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from try
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete employee,try
+    from try left join employee
+    on try.id=employee.id
+    where try.id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ndgwww.HR.management.pojo.Try">
+    insert into try (id, startTime, endTime, 
+      comment, result, dealDate, 
+      remark)
+    values (#{id,jdbcType=VARCHAR}, #{starttime,jdbcType=DATE}, #{endtime,jdbcType=DATE}, 
+      #{comment,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{dealdate,jdbcType=DATE}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ndgwww.HR.management.pojo.Try">
+    insert into try
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="starttime != null">
+        startTime,
+      </if>
+      <if test="endtime != null">
+        endTime,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="dealdate != null">
+        dealDate,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=DATE},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=DATE},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="dealdate != null">
+        #{dealdate,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ndgwww.HR.management.pojo.Try">
+    update try
+    <set>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="dealdate != null">
+        dealDate = #{dealdate,jdbcType=DATE},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ndgwww.HR.management.pojo.Try">
+    update try
+    set startTime = #{starttime,jdbcType=DATE},
+      endTime = #{endtime,jdbcType=DATE},
+      comment = #{comment,jdbcType=VARCHAR},
+      result = #{result,jdbcType=INTEGER},
+      dealDate = #{dealdate,jdbcType=DATE},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

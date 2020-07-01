@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ndgwww.HR.management.mapper.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.ndgwww.HR.management.pojo.Employee">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
+    <result column="departmentId" jdbcType="VARCHAR" property="departmentid" />
+    <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+    <result column="stationId" jdbcType="VARCHAR" property="stationid" />
+    <result column="stationName" jdbcType="VARCHAR" property="stationname" />
+    <result column="employDate" jdbcType="DATE" property="employdate" />
+    <result column="workDate" jdbcType="DATE" property="workdate" />
+    <result column="form" jdbcType="INTEGER" property="form" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+    <result column="politics" jdbcType="VARCHAR" property="politics" />
+    <result column="folk" jdbcType="VARCHAR" property="folk" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="height" jdbcType="VARCHAR" property="height" />
+    <result column="blood" jdbcType="VARCHAR" property="blood" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="homeplace" jdbcType="VARCHAR" property="homeplace" />
+    <result column="seat" jdbcType="VARCHAR" property="seat" />
+    <result column="eduBack" jdbcType="VARCHAR" property="eduback" />
+    <result column="eduDegree" jdbcType="VARCHAR" property="edudegree" />
+    <result column="graSchool" jdbcType="VARCHAR" property="graschool" />
+    <result column="speciality" jdbcType="VARCHAR" property="speciality" />
+    <result column="graDate" jdbcType="DATE" property="gradate" />
+    <result column="tag" jdbcType="INTEGER" property="tag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, sex, birth, idcard, departmentId, departmentName, stationId, stationName, 
+    employDate, workDate, form, source, politics, folk, nation, phone, email, height, 
+    blood, status, homeplace, seat, eduBack, eduDegree, graSchool, speciality, graDate, 
+    tag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from employee
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ndgwww.HR.management.pojo.Employee">
+    insert into employee (id, name, sex, 
+      birth, idcard, departmentId, 
+      departmentName, stationId, stationName, 
+      employDate, workDate, form, 
+      source, politics, folk, 
+      nation, phone, email, 
+      height, blood, status, 
+      homeplace, seat, eduBack, 
+      eduDegree, graSchool, speciality, 
+      graDate, tag)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{birth,jdbcType=DATE}, #{idcard,jdbcType=VARCHAR}, #{departmentid,jdbcType=VARCHAR}, 
+      #{departmentname,jdbcType=VARCHAR}, #{stationid,jdbcType=VARCHAR}, #{stationname,jdbcType=VARCHAR}, 
+      #{employdate,jdbcType=DATE}, #{workdate,jdbcType=DATE}, #{form,jdbcType=INTEGER}, 
+      #{source,jdbcType=VARCHAR}, #{politics,jdbcType=VARCHAR}, #{folk,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{height,jdbcType=VARCHAR}, #{blood,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{homeplace,jdbcType=VARCHAR}, #{seat,jdbcType=VARCHAR}, #{eduback,jdbcType=VARCHAR}, 
+      #{edudegree,jdbcType=VARCHAR}, #{graschool,jdbcType=VARCHAR}, #{speciality,jdbcType=VARCHAR}, 
+      #{gradate,jdbcType=DATE}, #{tag,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ndgwww.HR.management.pojo.Employee">
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+<!--      <if test="id != null">-->
+        id,
+<!--      </if>-->
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="idcard != null">
+        idcard,
+      </if>
+      <if test="departmentid != null">
+        departmentId,
+      </if>
+      <if test="departmentname != null">
+        departmentName,
+      </if>
+      <if test="stationid != null">
+        stationId,
+      </if>
+      <if test="stationname != null">
+        stationName,
+      </if>
+      <if test="employdate != null">
+        employDate,
+      </if>
+      <if test="workdate != null">
+        workDate,
+      </if>
+      <if test="form != null">
+        form,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="politics != null">
+        politics,
+      </if>
+      <if test="folk != null">
+        folk,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="blood != null">
+        blood,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="homeplace != null">
+        homeplace,
+      </if>
+      <if test="seat != null">
+        seat,
+      </if>
+      <if test="eduback != null">
+        eduBack,
+      </if>
+      <if test="edudegree != null">
+        eduDegree,
+      </if>
+      <if test="graschool != null">
+        graSchool,
+      </if>
+      <if test="speciality != null">
+        speciality,
+      </if>
+      <if test="gradate != null">
+        graDate,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentname != null">
+        #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="stationid != null">
+        #{stationid,jdbcType=VARCHAR},
+      </if>
+      <if test="stationname != null">
+        #{stationname,jdbcType=VARCHAR},
+      </if>
+      <if test="employdate != null">
+        #{employdate,jdbcType=DATE},
+      </if>
+      <if test="workdate != null">
+        #{workdate,jdbcType=DATE},
+      </if>
+      <if test="form != null">
+        #{form,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="politics != null">
+        #{politics,jdbcType=VARCHAR},
+      </if>
+      <if test="folk != null">
+        #{folk,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null">
+        #{blood,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="homeplace != null">
+        #{homeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="seat != null">
+        #{seat,jdbcType=VARCHAR},
+      </if>
+      <if test="eduback != null">
+        #{eduback,jdbcType=VARCHAR},
+      </if>
+      <if test="edudegree != null">
+        #{edudegree,jdbcType=VARCHAR},
+      </if>
+      <if test="graschool != null">
+        #{graschool,jdbcType=VARCHAR},
+      </if>
+      <if test="speciality != null">
+        #{speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="gradate != null">
+        #{gradate,jdbcType=DATE},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ndgwww.HR.management.pojo.Employee">
+    update employee
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="idcard != null">
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null">
+        departmentId = #{departmentid,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentname != null">
+        departmentName = #{departmentname,jdbcType=VARCHAR},
+      </if>
+      <if test="stationid != null">
+        stationId = #{stationid,jdbcType=VARCHAR},
+      </if>
+      <if test="stationname != null">
+        stationName = #{stationname,jdbcType=VARCHAR},
+      </if>
+      <if test="employdate != null">
+        employDate = #{employdate,jdbcType=DATE},
+      </if>
+      <if test="workdate != null">
+        workDate = #{workdate,jdbcType=DATE},
+      </if>
+      <if test="form != null">
+        form = #{form,jdbcType=INTEGER},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="politics != null">
+        politics = #{politics,jdbcType=VARCHAR},
+      </if>
+      <if test="folk != null">
+        folk = #{folk,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=VARCHAR},
+      </if>
+      <if test="blood != null">
+        blood = #{blood,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="homeplace != null">
+        homeplace = #{homeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="seat != null">
+        seat = #{seat,jdbcType=VARCHAR},
+      </if>
+      <if test="eduback != null">
+        eduBack = #{eduback,jdbcType=VARCHAR},
+      </if>
+      <if test="edudegree != null">
+        eduDegree = #{edudegree,jdbcType=VARCHAR},
+      </if>
+      <if test="graschool != null">
+        graSchool = #{graschool,jdbcType=VARCHAR},
+      </if>
+      <if test="speciality != null">
+        speciality = #{speciality,jdbcType=VARCHAR},
+      </if>
+      <if test="gradate != null">
+        graDate = #{gradate,jdbcType=DATE},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ndgwww.HR.management.pojo.Employee">
+    update employee
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      birth = #{birth,jdbcType=DATE},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=VARCHAR},
+      departmentName = #{departmentname,jdbcType=VARCHAR},
+      stationId = #{stationid,jdbcType=VARCHAR},
+      stationName = #{stationname,jdbcType=VARCHAR},
+      employDate = #{employdate,jdbcType=DATE},
+      workDate = #{workdate,jdbcType=DATE},
+      form = #{form,jdbcType=INTEGER},
+      source = #{source,jdbcType=VARCHAR},
+      politics = #{politics,jdbcType=VARCHAR},
+      folk = #{folk,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      height = #{height,jdbcType=VARCHAR},
+      blood = #{blood,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      homeplace = #{homeplace,jdbcType=VARCHAR},
+      seat = #{seat,jdbcType=VARCHAR},
+      eduBack = #{eduback,jdbcType=VARCHAR},
+      eduDegree = #{edudegree,jdbcType=VARCHAR},
+      graSchool = #{graschool,jdbcType=VARCHAR},
+      speciality = #{speciality,jdbcType=VARCHAR},
+      graDate = #{gradate,jdbcType=DATE},
+      tag = #{tag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectDepartIdEmployee" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+    where departmentId = #{departmentid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllEmployee" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+  </select>
+</mapper>
